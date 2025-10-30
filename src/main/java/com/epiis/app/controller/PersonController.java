@@ -5,19 +5,21 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.epiis.app.controller.reqresp.RequestPersonInsert;
 import com.epiis.app.controller.reqresp.ResponsePersonInsert;
 
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @RestController
 @RequestMapping(path = "person")
 public class PersonController {
-	@GetMapping(path = "insert")	
-	public ResponseEntity<ResponsePersonInsert> insert() {
+	@PostMapping(path = "insert", consumes = "multipart/form-data")
+	public ResponseEntity<ResponsePersonInsert> insert(@ModelAttribute RequestPersonInsert request) {
 		ResponsePersonInsert responsePersonInsert = new ResponsePersonInsert();
 		
-		responsePersonInsert.type = "success";
-		responsePersonInsert.message = "Operación realizada correctamente";
+		responsePersonInsert.success();
+		responsePersonInsert.listMessage.add("Operación realizada correctamente");
 		
 		return new ResponseEntity<>(responsePersonInsert, HttpStatus.OK);
 	}
