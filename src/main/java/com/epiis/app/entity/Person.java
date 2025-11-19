@@ -6,8 +6,6 @@ import com.epiis.app.generic.EntityGeneric;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Getter;
@@ -19,7 +17,6 @@ import lombok.Setter;
 @Setter
 public class Person extends EntityGeneric {
 	@Id
-	@GeneratedValue(strategy = GenerationType.UUID)
 	@Column(name = "idPerson")
 	private String idPerson;
 	

@@ -1,5 +1,5 @@
-create database ds220252;
-use ds220252;
+create database dbds220252;
+use dbds220252;
 
 create table tperson
 (
