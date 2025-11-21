@@ -1,6 +1,8 @@
 package com.epiis.app.business;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,5 +36,28 @@ public class PersonBusiness {
 		this.personRepository.save(person);
 		
 		return true;
+	}
+	
+	public List<DtoPerson> getAll() {
+		List<Person> listPerson = this.personRepository.findAll();
+		
+		List<DtoPerson> listDtoPerson = new ArrayList<>();
+		
+		for(Person item: listPerson) {
+			DtoPerson dtoPersonTemp = new DtoPerson();
+			
+			dtoPersonTemp.setIdPerson(item.getIdPerson());
+			dtoPersonTemp.setFirstName(item.getFirstName());
+			dtoPersonTemp.setSurName(item.getSurName());
+			dtoPersonTemp.setDni(item.getDni());
+			dtoPersonTemp.setGender(item.isGender());
+			dtoPersonTemp.setBirthDate(item.getBirthDate());
+			dtoPersonTemp.setCreatedAt(item.getCreatedAt());
+			dtoPersonTemp.setUpdatedAt(item.getUpdatedAt());
+			
+			listDtoPerson.add(dtoPersonTemp);
+		}
+		
+		return listDtoPerson;
 	}
 }
