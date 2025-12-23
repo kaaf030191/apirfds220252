@@ -1,6 +1,7 @@
 package com.epiis.app.dto;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -24,4 +25,6 @@ public class DtoPerson extends DtoGeneric {
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date birthDate;
+	
+	private List<DtoPhone> listPhone;
 }

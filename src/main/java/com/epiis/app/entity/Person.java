@@ -1,12 +1,14 @@
 package com.epiis.app.entity;
 
 import java.sql.Date;
+import java.util.List;
 
 import com.epiis.app.generic.EntityGeneric;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -34,4 +36,7 @@ public class Person extends EntityGeneric {
 	
 	@Column(name = "birthDate")
 	private Date birthDate;
+	
+	@OneToMany(mappedBy = "parentPerson")
+    private List<Phone> listPhone;
 }

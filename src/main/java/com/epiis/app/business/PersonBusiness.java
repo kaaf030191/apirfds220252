@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 
 import com.epiis.app.dataaccess.PersonRepository;
 import com.epiis.app.dto.DtoPerson;
+import com.epiis.app.dto.DtoPhone;
 import com.epiis.app.entity.Person;
+import com.epiis.app.entity.Phone;
 
 @Service
 public class PersonBusiness {
@@ -39,7 +41,7 @@ public class PersonBusiness {
 	}
 	
 	public List<DtoPerson> getAll() {
-		List<Person> listPerson = this.personRepository.findAll();
+		List<Person> listPerson = this.personRepository.getAll();
 		
 		List<DtoPerson> listDtoPerson = new ArrayList<>();
 		
@@ -54,6 +56,21 @@ public class PersonBusiness {
 			dtoPersonTemp.setBirthDate(item.getBirthDate());
 			dtoPersonTemp.setCreatedAt(item.getCreatedAt());
 			dtoPersonTemp.setUpdatedAt(item.getUpdatedAt());
+			
+			dtoPersonTemp.setListPhone(new ArrayList<>());
+			
+			for(Phone value: item.getListPhone())  {
+				DtoPhone dtoPhoneTemp = new DtoPhone();
+				
+				dtoPhoneTemp.setIdPhone(value.getIdPhone());
+				dtoPhoneTemp.setIdPerson(item.getIdPerson());
+				dtoPhoneTemp.setNumber(value.getNumber());
+				dtoPhoneTemp.setProvider(value.getProvider());
+				dtoPhoneTemp.setCreatedAt(value.getCreatedAt());
+				dtoPhoneTemp.setUpdatedAt(value.getUpdatedAt());
+				
+				dtoPersonTemp.getListPhone().add(dtoPhoneTemp);
+			}
 			
 			listDtoPerson.add(dtoPersonTemp);
 		}
